@@ -53,6 +53,7 @@ var messageHandler mqtt.MessageHandler = func(c mqtt.Client, m mqtt.Message) {
 	topic := m.Topic()
 	msg := string(m.Payload())
 
+	//uptime
 
 	if(topic=="$SYS/broker/uptime"){
 		fmt.Println(msg)
@@ -61,6 +62,8 @@ var messageHandler mqtt.MessageHandler = func(c mqtt.Client, m mqtt.Message) {
 		fmt.Println(data)
 		promreg.UptimeGauge(data)	
 	}
+
+	//messages
 
 	if(topic=="$SYS/broker/messages/received"){
 		fmt.Println(msg)
@@ -74,5 +77,74 @@ var messageHandler mqtt.MessageHandler = func(c mqtt.Client, m mqtt.Message) {
 		fmt.Println(data)
 		promreg.MessagesSentGauge(data)
 	}
+
+	// clients
+
+	if(topic=="$SYS/broker/clients/total"){
+		fmt.Println(msg)
+		data , _ :=  strconv.ParseFloat(msg,64)
+		fmt.Println(data)
+		promreg.ClientsTotalGauge(data)
+	}
+
+	if(topic=="$SYS/broker/clients/maximum"){
+		fmt.Println(msg)
+		data , _ :=  strconv.ParseFloat(msg,64)
+		fmt.Println(data)
+		promreg.ClientsMaximumGauge(data)
+	}
+
+	if(topic=="$SYS/broker/clients/connected"){
+		fmt.Println(msg)
+		data , _ :=  strconv.ParseFloat(msg,64)
+		fmt.Println(data)
+		promreg.ClientsConnectedGauge(data)
+	}
+
+	//bytes
+
+	if(topic=="$SYS/broker/bytes/received"){
+		fmt.Println(msg)
+		data , _ :=  strconv.ParseFloat(msg,64)
+		fmt.Println(data)
+		promreg.BytesReceivedGauge(data)
+	}
+
+	if(topic=="$SYS/broker/bytes/sent"){
+		fmt.Println(msg)
+		data , _ :=  strconv.ParseFloat(msg,64)
+		fmt.Println(data)
+		promreg.BytesSentGauge(data)
+	}
+
+	//heap
+
+	if(topic=="$SYS/broker/heap/current"){
+		fmt.Println(msg)
+		data , _ :=  strconv.ParseFloat(msg,64)
+		fmt.Println(data)
+		promreg.HeapCurrentGauge(data)
+	}
+
+	if(topic=="$SYS/broker/heap/maximum"){
+		fmt.Println(msg)
+		data , _ :=  strconv.ParseFloat(msg,64)
+		fmt.Println(data)
+		promreg.HeapMaximumGauge(data)
+	}
+
+	// if(topic=="$SYS/broker/messages/sent"){
+	// 	fmt.Println(msg)
+	// 	data , _ :=  strconv.ParseFloat(msg,64)
+	// 	fmt.Println(data)
+	// 	promreg.MessagesSentGauge(data)
+	// }
+
+	// if(topic=="$SYS/broker/messages/sent"){
+	// 	fmt.Println(msg)
+	// 	data , _ :=  strconv.ParseFloat(msg,64)
+	// 	fmt.Println(data)
+	// 	promreg.MessagesSentGauge(data)
+	// }
 
 }
