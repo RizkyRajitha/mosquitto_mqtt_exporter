@@ -8,7 +8,7 @@ import (
 	"os"
 
 	"github.com/prometheus/client_golang/prometheus/promhttp"
-	mqttcon "rizkyrajitha.github.io/mqttexporter/mqttcon"
+	mqttcon "rizkyrajitha.github.io/mosquitto_exporter/mqttcon"
 )
 
 var brokerAddress, username, password, listenPort string

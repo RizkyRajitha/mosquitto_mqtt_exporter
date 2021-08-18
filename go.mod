@@ -1,4 +1,4 @@
-module rizkyrajitha.github.io/mqttexporter
+module rizkyrajitha.github.io/mosquitto_exporter
 
 go 1.15
 
