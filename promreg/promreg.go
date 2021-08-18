@@ -1,7 +1,7 @@
 package promreg
 
 import (
-	"fmt"
+	"log"
 
 	prometheus "github.com/prometheus/client_golang/prometheus"
 )
@@ -60,52 +60,52 @@ func init()  {
 }
 
 func UptimeGauge(Uptime float64)  {
-	fmt.Println("Uptime")
+	log.Println("Uptime")
 	mosquittoUptimeGauge.Set(Uptime)
 }
 
 func MessagesReceivedGauge(MessagesReceivedCount float64)  {
-	fmt.Println("MessagesReceivedCount")
+	log.Println("MessagesReceivedCount")
     mosquittoMessagesReceivedGauge.Set(MessagesReceivedCount)
 }
 
 func MessagesSentGauge(MessagesSentCount float64)  {
-	fmt.Println("MessagesSentCount")
+	log.Println("MessagesSentCount")
     mosquittoMessagesSentGauge.Set(MessagesSentCount)
 }
 
 
 func ClientsTotalGauge(TotalClients float64)  {
-	fmt.Println("TotalClients")
+	log.Println("TotalClients")
 	mosquittoClientsTotalGauge.Set(TotalClients)
 }
 
 func ClientsMaximumGauge(MaximumClients float64)  {
-	fmt.Println("MaximumClients")
+	log.Println("MaximumClients")
 	mosquittoClientsMaximumGauge.Set(MaximumClients)
 }
 
 func ClientsConnectedGauge(ConnectedClients float64)  {
-	fmt.Println("ConnectedClients")
+	log.Println("ConnectedClients")
 	mosquittoClientsConnectedGauge.Set(ConnectedClients)
 }
 
 func BytesReceivedGauge(BytesReceived float64)  {
-	fmt.Println("BytesReceived")
+	log.Println("BytesReceived")
     mosquittoBytesReceivedGauge.Set(float64(BytesReceived))
 }
 
 func BytesSentGauge(BytesSent float64)  {
-	fmt.Println("BytesSent")
+	log.Println("BytesSent")
     mosquittoBytesSentGauge.Set(float64(BytesSent))
 }
 
 func HeapCurrentGauge(HeapCurrent float64)  {
-	fmt.Println("HeapCurrent")
+	log.Println("HeapCurrent")
     mosquittoHeapCurrentGauge.Set(float64(HeapCurrent))
 }
 
 func HeapMaximumGauge(HeapMaximum float64)  {
-	fmt.Println("HeapMaximum")
+	log.Println("HeapMaximum")
     mosquittoHeapMaximumGauge.Set(float64(HeapMaximum))
 }

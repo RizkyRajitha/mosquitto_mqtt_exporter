@@ -2,6 +2,7 @@ package mqttcon
 
 import (
 	"fmt"
+	"log"
 	"strconv"
 	"strings"
 
@@ -32,118 +33,111 @@ func MqttCon( brokerIp string , username string ,password string ){
 	mqttClient = mqtt.NewClient(mqttClientOptions)
 	
     if token := mqttClient.Connect(); token.Wait() && token.Error() != nil {    
-		panic(token.Error())
+		log.Fatal("Error connecting to mqtt broker\n" , token.Error())
+		// panic(token.Error())
 	}
 
     if token :=  mqttClient.Subscribe(topic , 0 , nil); token.Wait() && token.Error() != nil {
-		panic(token.Error())
+		logMsg := fmt.Sprintf("Error subscribing to topic : %s on  mqtt broker\n%s", topic, token.Error())
+		log.Fatal(logMsg)
+		// panic(token.Error())
 	}
-
-  	fmt.Println("Subscribed to topic: ", topic)
+	
+  	log.Println("Subscribed to  : ", topic)
 
 }
 
 
 var connectionHandler mqtt.OnConnectHandler = func (client mqtt.Client)  {
-	fmt.Println("connected to ",brokerAddress)
+	log.Println("Connected to : ",brokerAddress)
 }
 
-var messageHandler mqtt.MessageHandler = func(c mqtt.Client, m mqtt.Message) {
+var messageHandler mqtt.MessageHandler = func(client mqtt.Client, message mqtt.Message) {
 
-	topic := m.Topic()
-	msg := string(m.Payload())
+	topic := message.Topic()
+	msg := string(message.Payload())
 
 	//uptime
 
 	if(topic=="$SYS/broker/uptime"){
-		fmt.Println(msg)
 		uptime := (strings.Split(msg , " "))[0]
 		data , _ :=  strconv.ParseFloat(uptime,64)
-		fmt.Println(data)
+		log.Println(data)
 		promreg.UptimeGauge(data)	
 	}
 
 	//messages
 
 	if(topic=="$SYS/broker/messages/received"){
-		fmt.Println(msg)
 		data , _ :=  strconv.ParseFloat(msg,64)
 		promreg.MessagesReceivedGauge(data)
 	}
 
 	if(topic=="$SYS/broker/messages/sent"){
-		fmt.Println(msg)
 		data , _ :=  strconv.ParseFloat(msg,64)
-		fmt.Println(data)
+		log.Println(data)
 		promreg.MessagesSentGauge(data)
 	}
 
 	// clients
 
 	if(topic=="$SYS/broker/clients/total"){
-		fmt.Println(msg)
 		data , _ :=  strconv.ParseFloat(msg,64)
-		fmt.Println(data)
+		log.Println(data)
 		promreg.ClientsTotalGauge(data)
 	}
 
 	if(topic=="$SYS/broker/clients/maximum"){
-		fmt.Println(msg)
 		data , _ :=  strconv.ParseFloat(msg,64)
-		fmt.Println(data)
+		log.Println(data)
 		promreg.ClientsMaximumGauge(data)
 	}
 
 	if(topic=="$SYS/broker/clients/connected"){
-		fmt.Println(msg)
 		data , _ :=  strconv.ParseFloat(msg,64)
-		fmt.Println(data)
+		log.Println(data)
 		promreg.ClientsConnectedGauge(data)
 	}
 
 	//bytes
 
 	if(topic=="$SYS/broker/bytes/received"){
-		fmt.Println(msg)
 		data , _ :=  strconv.ParseFloat(msg,64)
-		fmt.Println(data)
+		log.Println(data)
 		promreg.BytesReceivedGauge(data)
 	}
 
 	if(topic=="$SYS/broker/bytes/sent"){
-		fmt.Println(msg)
 		data , _ :=  strconv.ParseFloat(msg,64)
-		fmt.Println(data)
+		log.Println(data)
 		promreg.BytesSentGauge(data)
 	}
 
 	//heap
 
 	if(topic=="$SYS/broker/heap/current"){
-		fmt.Println(msg)
 		data , _ :=  strconv.ParseFloat(msg,64)
-		fmt.Println(data)
+		log.Println(data)
 		promreg.HeapCurrentGauge(data)
 	}
 
 	if(topic=="$SYS/broker/heap/maximum"){
-		fmt.Println(msg)
 		data , _ :=  strconv.ParseFloat(msg,64)
-		fmt.Println(data)
+		log.Println(data)
 		promreg.HeapMaximumGauge(data)
 	}
 
 	// if(topic=="$SYS/broker/messages/sent"){
-	// 	fmt.Println(msg)
+	// 	log.Println(msg)
 	// 	data , _ :=  strconv.ParseFloat(msg,64)
-	// 	fmt.Println(data)
+	// 	log.Println(data)
 	// 	promreg.MessagesSentGauge(data)
 	// }
 
 	// if(topic=="$SYS/broker/messages/sent"){
-	// 	fmt.Println(msg)
+	// 	log.Println(msg)
 	// 	data , _ :=  strconv.ParseFloat(msg,64)
-	// 	fmt.Println(data)
+	// 	log.Println(data)
 	// 	promreg.MessagesSentGauge(data)
 	// }
 
