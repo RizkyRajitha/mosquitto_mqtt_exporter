@@ -28,17 +28,6 @@ var mosquittoBytesReceivedGauge = prometheus.NewGauge(prometheus.GaugeOpts{Name:
 var mosquittoHeapCurrentGauge = prometheus.NewGauge(prometheus.GaugeOpts{Name: "mosquitto_heap_current", Help: "The current size of the heap memory in use by mosquitto. Note that this topic may be unavailable depending on compile time options.", Namespace: namespace})
 var mosquittoHeapMaximumGauge = prometheus.NewGauge(prometheus.GaugeOpts{Name: "mosquitto_heap_maximum", Help: "The largest amount of heap memory used by mosquitto. Note that this topic may be unavailable depending on compile time options.", Namespace: namespace})
 
-// $SYS/broker/bytes/received
-
-// $SYS/broker/bytes/sent
-
-// $SYS/broker/heap/current size
-
-// $SYS/broker/heap/maximum size
-// var mosquittoClientsActive= prometheus.NewGauge(prometheus.GaugeOpts{Name: "mosquitto_messages_Active" , Help: "mosquitto broker active clients" , Namespace: namespace})
-
-// $SYS/broker/clients/total
-
 func init() {
 
 	prometheus.Unregister(collectors.NewGoCollector())

@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"log"
 
 	"net/http"
@@ -11,9 +12,14 @@ import (
 	mqttcon "rizkyrajitha.github.io/mosquitto_exporter/mqttcon"
 )
 
-var brokerAddress, username, password, listenPort string
+var version, brokerAddress, username, password, listenPort string
 
 func main() {
+
+	flag.Usage = func() {
+		fmt.Printf("mosquitto_exporter %s\nA Mosquitto Mqtt Broker metric exporter for Prometheus\n\nOptions\n", version)
+        flag.PrintDefaults()
+	}
 
 	flag.StringVar(&brokerAddress, "brokerAddress", "127.0.0.1:1883", "mqtt broker ip / url and port")
 	flag.StringVar(&listenPort, "listenPort", "9992", "exporter listening address")
