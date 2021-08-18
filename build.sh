@@ -11,7 +11,7 @@ do
     BinaryName="mosquitto_exporter-${GOOS}-${GOARCH}"
     echo $BinaryName
 
-    env GOOS=$GOOS GOARCH=$GOARCH go build -ldflags="-X 'main.version=v0.0.1'" -o $BinaryName
+    env GOOS=$GOOS GOARCH=$GOARCH go build -ldflags="-X 'main.version=v0.1.0'" -o $BinaryName
 
 done
 
