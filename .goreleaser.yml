@@ -1,6 +1,6 @@
 builds:
   - 
-    binary: mosquitto_exporter
+    binary: mosquitto_mqtt_exporter
 
     flags:
       - -tags=dev
@@ -23,8 +23,17 @@ builds:
       - 6
       - 7
 
-    # no_unique_dist_dir: true
+release:
 
+  draft: true
+
+  prerelease: true
+
+  discussion_category_name: Announcements
+  
+  header: |
+    ## Prometheus exporter for Mosquitto mqtt broker
+    ### Release {{ .Tag }}  ({{ .Date }})
 
 archives:
   - replacements:

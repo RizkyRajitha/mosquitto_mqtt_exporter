@@ -10,7 +10,7 @@ do
     GOOS=${platform_split[0]}
     GOARCH=${platform_split[1]}
 
-    BinaryName="mosquitto_exporter-${version}-${GOOS}-${GOARCH}"
+    BinaryName="mosquitto_mqtt_exporter-${version}-${GOOS}-${GOARCH}"
     echo $BinaryName
 
     env GOOS=$GOOS GOARCH=$GOARCH go build -ldflags="-X 'main.version=${version}'" -o $BinaryName
@@ -28,7 +28,7 @@ do
     GOARCH=arm
     GOARM=$armversion
 
-    BinaryName="mosquitto_exporter-${version}-${GOOS}-${GOARCH}v${armversion}"
+    BinaryName="mosquitto_mqtt_exporter-${version}-${GOOS}-${GOARCH}v${armversion}"
     echo $BinaryName
 
     env GOOS=$GOOS GOARCH=$GOARCH GOARM=$GOARM go build -ldflags="-X 'main.version=${version}'" -o $BinaryName

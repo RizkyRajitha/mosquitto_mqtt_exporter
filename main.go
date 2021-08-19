@@ -9,8 +9,8 @@ import (
 	"os"
 
 	"github.com/prometheus/client_golang/prometheus/promhttp"
-	"rizkyrajitha.github.io/mosquitto_exporter/collector"
-	mqttcon "rizkyrajitha.github.io/mosquitto_exporter/mqttcon"
+	"rizkyrajitha.github.io/mosquitto_mqtt_exporter/collector"
+	mqttcon "rizkyrajitha.github.io/mosquitto_mqtt_exporter/mqttcon"
 )
 
 var version, brokerAddress, username, password, listenPort string
@@ -18,7 +18,7 @@ var version, brokerAddress, username, password, listenPort string
 func main() {
 
 	flag.Usage = func() {
-		fmt.Printf("mosquitto_exporter v%s\nA Mosquitto Mqtt Broker metric exporter for Prometheus\n\nOptions\n", version)
+		fmt.Printf("mosquitto_mqtt_exporter v%s\nA Mosquitto Mqtt Broker metric exporter for Prometheus\n\nOptions\n", version)
 		flag.PrintDefaults()
 	}
 
@@ -35,7 +35,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	fmt.Printf("mosquitto_exporter v%s\nA Mosquitto Mqtt Broker metric exporter for Prometheus\n\n", version)
+	fmt.Printf("mosquitto_mqtt_exporter v%s\nA Mosquitto Mqtt Broker metric exporter for Prometheus\n\n", version)
 	log.Println("brokerAddress : ", brokerAddress)
 
 	if username != "" {
@@ -49,7 +49,7 @@ func main() {
 
 	http.Handle("/metrics", handler)
 
-	log.Println("mosquitto_exporter listening on port : ", listenPort)
+	log.Println("mosquitto_mqtt_exporter listening on port : ", listenPort)
 
 	mqttcon.MqttCon(brokerAddress, username, password)
 
@@ -65,11 +65,11 @@ func homePageHandler(w http.ResponseWriter, r *http.Request) {
 	homePageHtml := `
 		<html> 
 		<head>	
-		<title> mosquitto_exporter v` + version + `</title>
+		<title> mosquitto_mqtt_exporter v` + version + `</title>
 		</head>	
 		<body>
 		
-		<h1>mosquitto_exporter v` + version + `</h1> 
+		<h1>mosquitto_mqtt_exporter v` + version + `</h1> 
 		<a href="/metrics" >metrics</a> 
 		
 		</body>
