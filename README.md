@@ -11,8 +11,20 @@
 
 ## Run exporter 
 
+binary
+
 ```bash
 ./mosquitto_exporter-linux-amd64 --brokerAddress=localhost:1883`
+```
+
+```bash
+docker build . --tag=mosquitto_exporter
+
+docker run -p 9992:9992 -e brokerAddress=localhost:1883 mosquitto_exporter
+
+# with host networking https://stackoverflow.com/a/24326540
+docker run -p 9992:9992 --add-host host.docker.internal:host-gateway -e brokerAddress=host.docker.internal:1883  mosquitto_exporter
+
 ```
 
 ## Metrics

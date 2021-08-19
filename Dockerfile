@@ -1,10 +1,5 @@
 FROM golang:1.16-alpine AS builder
 
-ENV brokerAddress=""
-ENV listenPort=9992
-ENV username=""
-ENV password=""
-
 WORKDIR /app
 
 COPY go.mod ./
@@ -18,6 +13,11 @@ COPY mqttcon/* ./mqttcon/
 RUN go build 
 
 FROM alpine:latest AS runner
+
+ENV brokerAddress=""
+ENV listenPort=9992
+ENV username=""
+ENV password=""
 
 WORKDIR /app
 
