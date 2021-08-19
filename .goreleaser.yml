@@ -1,5 +1,11 @@
 builds:
   - 
+    binary: mosquitto_exporter
+
+    flags:
+      - -tags=dev
+      - -v
+
     ldflags:
       - -s -w -X main.version={{.Version}}
 
@@ -17,51 +23,24 @@ builds:
       - 6
       - 7
 
+    # no_unique_dist_dir: true
 
 
+archives:
+  - replacements:
+      linux: Linux
+      386: i386
+      amd64: x86_64
 
-# # This is an example .goreleaser.yml file with some sane defaults.
-# # Make sure to check the documentation at http://goreleaser.com
-# # before:
-# #   hooks:
-# #     # You may remove this if you don't use go modules.
-# #     - go mod tidy
-# #     # you may remove this if you don't need go generate
-# #     - go generate ./...
-# # .goreleaser.yml
-# builds:
-#   # ldflags:
-#   #   - "-s -w -X main.version={{.Version}}"
+checksum:
+  name_template: 'checksums.txt'
 
-#   goos:
-#     - linux
+snapshot:
+  name_template: "{{ incpatch .Tag }}-next"
 
-#   goarch:
-#     - amd64
-#     - arm64
-#     - arm
-#     - 386
-
-#   goarm:
-#     - 5
-#     - 6
-#     - 7
-
-# # archives:
-# #   - replacements:
-# #       linux: Linux
-# #       386: i386
-# #       amd64: x86_64
-
-# # checksum:
-# #   name_template: 'checksums.txt'
-
-# # snapshot:
-# #   name_template: "{{ incpatch .Tag }}-next"
-
-# # changelog:
-# #   sort: asc
-# #   filters:
-# #     exclude:
-# #       - '^docs:'
-# #       - '^test:'
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - '^docs:'
+      - '^test:'

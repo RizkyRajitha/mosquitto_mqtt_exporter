@@ -1,9 +1,19 @@
 name: Release
 
 on:
-  push:
+  workflow_run:
+    workflows: ["Go-Build"]
     tags:
      - "*"
+    # branches: [dev]
+    types:
+      - completed
+  # push:
+  #   tags:
+  #    - "*"
+
+# on:
+
 
 jobs:
   Release:
