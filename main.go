@@ -35,6 +35,7 @@ func main() {
 		os.Exit(1)
 	}
 
+	fmt.Printf("mosquitto_exporter v%s\nA Mosquitto Mqtt Broker metric exporter for Prometheus\n\n", version)
 	log.Println("brokerAddress : ", brokerAddress)
 
 	if username != "" {
@@ -48,7 +49,7 @@ func main() {
 
 	http.Handle("/metrics", handler)
 
-	log.Println("mosquitto_exporter listening on port", listenPort)
+	log.Println("mosquitto_exporter listening on port : ", listenPort)
 
 	mqttcon.MqttCon(brokerAddress, username, password)
 
@@ -63,7 +64,6 @@ func homePageHandler(w http.ResponseWriter, r *http.Request) {
 
 	homePageHtml := `
 		<html> 
-		
 		<head>	
 		<title> mosquitto_exporter v` + version + `</title>
 		</head>	
