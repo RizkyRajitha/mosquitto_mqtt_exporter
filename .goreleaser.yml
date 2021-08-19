@@ -1,0 +1,55 @@
+builds:
+  - 
+    binary: mosquitto_mqtt_exporter
+
+    flags:
+      - -tags=dev
+      - -v
+
+    ldflags:
+      - -s -w -X main.version={{.Version}}
+
+    goos:
+      - linux
+
+    goarch:
+      - amd64
+      - arm64
+      - arm
+      - 386
+
+    goarm:
+      - 5
+      - 6
+      - 7
+
+release:
+
+  draft: true
+
+  prerelease: true
+
+  discussion_category_name: Announcements
+  
+  header: |
+    ## Prometheus exporter for Mosquitto mqtt broker
+    ### Release {{ .Tag }}  ({{ .Date }})
+
+archives:
+  - replacements:
+      linux: Linux
+      386: i386
+      amd64: x86_64
+
+checksum:
+  name_template: 'checksums.txt'
+
+snapshot:
+  name_template: "{{ incpatch .Tag }}-next"
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - '^docs:'
+      - '^test:'

@@ -7,7 +7,7 @@ import (
 	"strings"
 
 	mqtt "github.com/eclipse/paho.mqtt.golang"
-	"rizkyrajitha.github.io/mosquitto_exporter/collector"
+	"rizkyrajitha.github.io/mosquitto_mqtt_exporter/collector"
 )
 
 var topic = "$SYS/broker/#"
