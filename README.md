@@ -61,34 +61,34 @@ $SYS/broker/heap/maximum|mosquitto_heap_maximum|The largest amount of heap memor
 ```
 # HELP mosquitto_mqtt_mosquitto_bytes_received The total number of bytes received since the broker started.
 # TYPE mosquitto_mqtt_mosquitto_bytes_received gauge
-mosquitto_mqtt_mosquitto_bytes_received 0
+mosquitto_mqtt_mosquitto_bytes_received 1159
 # HELP mosquitto_mqtt_mosquitto_bytes_sent The total number of bytes sent since the broker started.
 # TYPE mosquitto_mqtt_mosquitto_bytes_sent gauge
-mosquitto_mqtt_mosquitto_bytes_sent 0
+mosquitto_mqtt_mosquitto_bytes_sent 184258
 # HELP mosquitto_mqtt_mosquitto_clients_active The number of currently connected clients.
 # TYPE mosquitto_mqtt_mosquitto_clients_active gauge
-mosquitto_mqtt_mosquitto_clients_active 0
+mosquitto_mqtt_mosquitto_clients_active 1
 # HELP mosquitto_mqtt_mosquitto_clients_maximum The maximum number of clients that have been connected to the broker at the same time.
 # TYPE mosquitto_mqtt_mosquitto_clients_maximum gauge
 mosquitto_mqtt_mosquitto_clients_maximum 0
 # HELP mosquitto_mqtt_mosquitto_clients_total The total number of active and inactive clients currently connected and registered on the broker.
 # TYPE mosquitto_mqtt_mosquitto_clients_total gauge
-mosquitto_mqtt_mosquitto_clients_total 0
+mosquitto_mqtt_mosquitto_clients_total 1
 # HELP mosquitto_mqtt_mosquitto_heap_current The current size of the heap memory in use by mosquitto. Note that this topic may be unavailable depending on compile time options.
 # TYPE mosquitto_mqtt_mosquitto_heap_current gauge
-mosquitto_mqtt_mosquitto_heap_current 0
+mosquitto_mqtt_mosquitto_heap_current 49752
 # HELP mosquitto_mqtt_mosquitto_heap_maximum The largest amount of heap memory used by mosquitto. Note that this topic may be unavailable depending on compile time options.
 # TYPE mosquitto_mqtt_mosquitto_heap_maximum gauge
 mosquitto_mqtt_mosquitto_heap_maximum 0
 # HELP mosquitto_mqtt_mosquitto_messages_received mosquitto broker messages received
 # TYPE mosquitto_mqtt_mosquitto_messages_received gauge
-mosquitto_mqtt_mosquitto_messages_received 0
+mosquitto_mqtt_mosquitto_messages_received 96
 # HELP mosquitto_mqtt_mosquitto_messages_sent mosquitto broker messages sent
 # TYPE mosquitto_mqtt_mosquitto_messages_sent gauge
-mosquitto_mqtt_mosquitto_messages_sent 0
+mosquitto_mqtt_mosquitto_messages_sent 4582
 # HELP mosquitto_mqtt_mosquitto_uptime mosquitto broker uptime
 # TYPE mosquitto_mqtt_mosquitto_uptime gauge
-mosquitto_mqtt_mosquitto_uptime 5973
+mosquitto_mqtt_mosquitto_uptime 32802
 ```
 
 ## Build exporter 
