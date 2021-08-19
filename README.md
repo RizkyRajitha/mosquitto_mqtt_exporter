@@ -31,7 +31,11 @@ $SYS/broker/heap/current|mosquitto_heap_current|The current size of the heap mem
 $SYS/broker/heap/maximum|mosquitto_heap_maximum|The largest amount of heap memory used by mosquitto. Note that this topic may be unavailable depending on compile time options.
 
 
-metrics example
+![grafana dashboard](grafana.png)
+
+[mosquitto man page]( https://mosquitto.org/man/mosquitto-8.html)
+
+## Metrics example
 
 ```
 # HELP mosquitto_mqtt_mosquitto_bytes_received The total number of bytes received since the broker started.
@@ -68,18 +72,18 @@ mosquitto_mqtt_mosquitto_uptime 5973
 
 ## Build exporter 
 
-This command will build for 
+```bash
+./build.sh
+```
+build for following platforms
 
 1. linux/386 
 2. linux/amd64
 3. linux/arm64" 
 4. linux/armv7
-4. linux/armv6
-4. linux/armv5
+5. linux/armv6
+6. linux/armv5
 
-```bash
-./build.sh
-```
 
 <!-- zap logging
 channals for mqtt

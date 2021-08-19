@@ -1,9 +1,9 @@
 FROM golang:1.16-alpine AS builder
 
-ENV brokerAddress=''
-ENV listenPort='9992'
-ENV username=''
-ENV password=''
+ENV brokerAddress=""
+ENV listenPort=9992
+ENV username=""
+ENV password=""
 
 WORKDIR /app
 
