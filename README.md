@@ -11,12 +11,20 @@
 
 ## Run exporter 
 
-binary
+### Binary
 
 ```bash
 ./mosquitto_exporter-linux-amd64 --brokerAddress=localhost:1883`
 ```
 
+### Docker
+
+#### From GHRC
+```bash
+docker run -d -p 9992:9992 -e brokerAddress=localhost:1883  ghcr.io/rizkyrajitha/mosquitto_exporter:latest
+```
+
+#### From source
 ```bash
 docker build . --tag=mosquitto_exporter
 
@@ -45,7 +53,8 @@ $SYS/broker/heap/maximum|mosquitto_heap_maximum|The largest amount of heap memor
 
 ![grafana dashboard](grafana.png)
 
-[mosquitto man page]( https://mosquitto.org/man/mosquitto-8.html)
+[mosquitto documentation / ]( https://mosquitto.org/documentation/)
+[mosquitto metrics man page ]( https://mosquitto.org/man/mosquitto-8.html)
 
 ## Metrics example
 
