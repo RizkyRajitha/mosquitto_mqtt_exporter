@@ -9,7 +9,7 @@ import (
 	"os"
 
 	"github.com/prometheus/client_golang/prometheus/promhttp"
-	collector "rizkyrajitha.github.io/mosquitto_exporter/collector"
+	"rizkyrajitha.github.io/mosquitto_exporter/collector"
 	mqttcon "rizkyrajitha.github.io/mosquitto_exporter/mqttcon"
 )
 
@@ -44,7 +44,7 @@ func main() {
 
 	http.HandleFunc("/", homePageHandler)
 
-	registry := collector.Registry()
+	registry := collector.GetMqttRegistry()
 	handler := promhttp.HandlerFor(registry, promhttp.HandlerOpts{})
 
 	http.Handle("/metrics", handler)

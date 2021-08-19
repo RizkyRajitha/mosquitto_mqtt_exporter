@@ -62,20 +62,20 @@ var messageHandler mqtt.MessageHandler = func(client mqtt.Client, message mqtt.M
 		uptime := (strings.Split(msg, " "))[0]
 		data, _ := strconv.ParseFloat(uptime, 64)
 		// log.Println(data)
-		metrics.UptimeGauge(data)
+		collector.UptimeGauge(data)
 	}
 
 	//messages
 
 	if topic == "$SYS/broker/messages/received" {
 		data, _ := strconv.ParseFloat(msg, 64)
-		metrics.MessagesReceivedGauge(data)
+		collector.MessagesReceivedGauge(data)
 	}
 
 	if topic == "$SYS/broker/messages/sent" {
 		data, _ := strconv.ParseFloat(msg, 64)
 		// log.Println(data)
-		metrics.MessagesSentGauge(data)
+		collector.MessagesSentGauge(data)
 	}
 
 	// clients
@@ -83,19 +83,19 @@ var messageHandler mqtt.MessageHandler = func(client mqtt.Client, message mqtt.M
 	if topic == "$SYS/broker/clients/total" {
 		data, _ := strconv.ParseFloat(msg, 64)
 		// log.Println(data)
-		metrics.ClientsTotalGauge(data)
+		collector.ClientsTotalGauge(data)
 	}
 
 	if topic == "$SYS/broker/clients/maximum" {
 		data, _ := strconv.ParseFloat(msg, 64)
 		// log.Println(data)
-		metrics.ClientsMaximumGauge(data)
+		collector.ClientsMaximumGauge(data)
 	}
 
 	if topic == "$SYS/broker/clients/connected" {
 		data, _ := strconv.ParseFloat(msg, 64)
 		// log.Println(data)
-		metrics.ClientsConnectedGauge(data)
+		collector.ClientsConnectedGauge(data)
 	}
 
 	//bytes
@@ -103,13 +103,13 @@ var messageHandler mqtt.MessageHandler = func(client mqtt.Client, message mqtt.M
 	if topic == "$SYS/broker/bytes/received" {
 		data, _ := strconv.ParseFloat(msg, 64)
 		// log.Println(data)
-		metrics.BytesReceivedGauge(data)
+		collector.BytesReceivedGauge(data)
 	}
 
 	if topic == "$SYS/broker/bytes/sent" {
 		data, _ := strconv.ParseFloat(msg, 64)
 		// log.Println(data)
-		metrics.BytesSentGauge(data)
+		collector.BytesSentGauge(data)
 	}
 
 	//heap
@@ -117,13 +117,13 @@ var messageHandler mqtt.MessageHandler = func(client mqtt.Client, message mqtt.M
 	if topic == "$SYS/broker/heap/current" {
 		data, _ := strconv.ParseFloat(msg, 64)
 		// log.Println(data)
-		metrics.HeapCurrentGauge(data)
+		collector.HeapCurrentGauge(data)
 	}
 
 	if topic == "$SYS/broker/heap/maximum" {
 		data, _ := strconv.ParseFloat(msg, 64)
 		// log.Println(data)
-		metrics.HeapMaximumGauge(data)
+		collector.HeapMaximumGauge(data)
 	}
 
 }

@@ -1,4 +1,4 @@
-package metrics
+package collector
 
 import (
 	// "log"
@@ -8,7 +8,7 @@ import (
 
 var namespace = "mosquitto_mqtt"
 
-var registry = prometheus.NewRegistry()
+var mqttRegistry = prometheus.NewRegistry()
 
 var mosquittoUptimeGauge = prometheus.NewGauge(prometheus.GaugeOpts{Name: "mosquitto_uptime", Help: "mosquitto broker uptime", Namespace: namespace})
 
@@ -31,24 +31,24 @@ var mosquittoHeapMaximumGauge = prometheus.NewGauge(prometheus.GaugeOpts{Name: "
 
 func init() {
 
-	registry.MustRegister(mosquittoUptimeGauge)
+	mqttRegistry.MustRegister(mosquittoUptimeGauge)
 
-	registry.MustRegister(mosquittoMessagesSentGauge)
-	registry.MustRegister(mosquittoMessagesReceivedGauge)
+	mqttRegistry.MustRegister(mosquittoMessagesSentGauge)
+	mqttRegistry.MustRegister(mosquittoMessagesReceivedGauge)
 
-	registry.MustRegister(mosquittoClientsTotalGauge)
-	registry.MustRegister(mosquittoClientsMaximumGauge)
-	registry.MustRegister(mosquittoClientsConnectedGauge)
+	mqttRegistry.MustRegister(mosquittoClientsTotalGauge)
+	mqttRegistry.MustRegister(mosquittoClientsMaximumGauge)
+	mqttRegistry.MustRegister(mosquittoClientsConnectedGauge)
 
-	registry.MustRegister(mosquittoBytesSentGauge)
-	registry.MustRegister(mosquittoBytesReceivedGauge)
+	mqttRegistry.MustRegister(mosquittoBytesSentGauge)
+	mqttRegistry.MustRegister(mosquittoBytesReceivedGauge)
 
-	registry.MustRegister(mosquittoHeapCurrentGauge)
-	registry.MustRegister(mosquittoHeapMaximumGauge)
+	mqttRegistry.MustRegister(mosquittoHeapCurrentGauge)
+	mqttRegistry.MustRegister(mosquittoHeapMaximumGauge)
 }
 
-func Registry() *prometheus.Registry {
-	return registry
+func GetMqttRegistry() *prometheus.Registry {
+	return mqttRegistry
 }
 
 func UptimeGauge(Uptime float64) {
