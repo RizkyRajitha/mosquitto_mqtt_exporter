@@ -1,13 +1,13 @@
-name: Publish
+name: Publish-GHRC
 
 on:
   workflow_run:
     workflows: ["Go-Build"]
+    branches: [master]
     # branches: [dev]
     types:
       - completed
       # - requested
-  # branches: [master]
 
 jobs:
   Publish:
