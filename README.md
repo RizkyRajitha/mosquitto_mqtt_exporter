@@ -108,4 +108,42 @@ build for following platforms
 
 <!-- zap logging
 channals for mqtt
+
+
+
+
+name: Publish-GHRC
+
+on:
+  push:
+    branches: [master]
+  # workflow_run:
+  #   workflows: ["Go-Build"]
+  #   # branches: [dev]
+  #   types:
+  #     - completed
+      # - requested
+
+jobs:
+  Publish:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Build docker container
+        run: docker build . -t ghcr.io/$(echo $GITHUB_ACTOR | tr '[:upper:]' '[:lower:]')/mosquitto_mqtt_exporter:latest -t ghcr.io/$(echo $GITHUB_ACTOR | tr '[:upper:]' '[:lower:]')/mosquitto_mqtt_exporter:$(echo $GITHUB_SHA | head -c7)
+
+      - name: Login to docker
+        run: echo  ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{github.actor}} --password-stdin
+
+      - name: Push
+        run: docker push ghcr.io/$(echo $GITHUB_ACTOR | tr '[:upper:]' '[:lower:]')/mosquitto_mqtt_exporter:latest
+# docker build . -t ghcr.io/aa/mosquitto_mqtt_exporter:latest -t ghcr.io/aa/mosquitto_mqtt_exporter:${echo $GITHUB_SHA | head -c7}
+
+
+
  -->
