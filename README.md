@@ -1,7 +1,7 @@
 ## Prometheus exporter for Mosquitto mqtt broker
 
 [![Publish-GHRC](https://github.com/RizkyRajitha/mosquitto_mqtt_exporter/actions/workflows/publishghrc.yml/badge.svg)](https://github.com/RizkyRajitha/mosquitto_mqtt_exporter/actions/workflows/publishghrc.yml)
-
+[![Go-Build](https://github.com/RizkyRajitha/mosquitto_mqtt_exporter/actions/workflows/build.yml/badge.svg)](https://github.com/RizkyRajitha/mosquitto_mqtt_exporter/actions/workflows/build.yml)
 [![Release](https://github.com/RizkyRajitha/mosquitto_mqtt_exporter/actions/workflows/release.yml/badge.svg)](https://github.com/RizkyRajitha/mosquitto_mqtt_exporter/actions/workflows/release.yml)
 
 <!-- A Mosquitto Mqtt Broker metric exporter for Prometheus  -->
@@ -18,7 +18,7 @@
 ### Binary
 
 ```bash
-./mosquitto_mqtt_exporter-linux-amd64 --brokerAddress=localhost:1883`
+./mosquitto_mqtt_exporter --brokerAddress=localhost:1883`
 ```
 
 ### Docker
