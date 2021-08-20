@@ -1,5 +1,9 @@
 ## Prometheus exporter for Mosquitto mqtt broker
 
+[![Publish-GHRC](https://github.com/RizkyRajitha/mosquitto_mqtt_exporter/actions/workflows/publishghrc.yml/badge.svg)](https://github.com/RizkyRajitha/mosquitto_mqtt_exporter/actions/workflows/publishghrc.yml)
+
+[![Release](https://github.com/RizkyRajitha/mosquitto_mqtt_exporter/actions/workflows/release.yml/badge.svg)](https://github.com/RizkyRajitha/mosquitto_mqtt_exporter/actions/workflows/release.yml)
+
 <!-- A Mosquitto Mqtt Broker metric exporter for Prometheus  -->
 
 ## Flags
