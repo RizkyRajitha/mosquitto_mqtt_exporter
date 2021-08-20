@@ -14,6 +14,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
+      - name: get latest release with tag
+        id: latestrelease
+        run: |
+          echo "::set-output name=releasetag::$( curl -s  https://api.github.com/repos/RizkyRajitha/mosquitto_mqtt_exporter/tags | jq '.[0].name' | sed 's/\"//g')"
+
+      - name: confirm release tag
+        run: |
+          echo ${{ steps.latestrelease.outputs.releasetag }}
+
+      - name: tagcheckout
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ steps.latestrelease.outputs.releasetag }}
+
       - name: Checkout
         uses: actions/checkout@v2
         with:
