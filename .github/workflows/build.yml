@@ -1,4 +1,4 @@
-name: Go-Build
+name: Publish-GHRC
 
 on:
   push:
