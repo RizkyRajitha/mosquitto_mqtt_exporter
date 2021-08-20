@@ -2,10 +2,10 @@ name: Release
 
 on:
   workflow_run:
+    branches: [ master ]
     workflows: ["Go-Build"]
     types:
       - completed
-
 
 jobs:
   Release:

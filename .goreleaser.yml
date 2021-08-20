@@ -25,7 +25,8 @@ builds:
 
 release:
 
-  # draft: true
+  draft: true
+  
   prerelease: true
 
   discussion_category_name: Announcements
@@ -42,9 +43,6 @@ archives:
 
 checksum:
   name_template: 'checksums.txt'
-
-snapshot:
-  name_template: "{{ incpatch .Tag }}-next"
 
 changelog:
   sort: asc
