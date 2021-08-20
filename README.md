@@ -30,6 +30,7 @@ docker run -d -p 9992:9992 -e brokerAddress=localhost:1883  ghcr.io/rizkyrajitha
 
 #### From source
 ```bash
+
 docker build . --tag=mosquitto_mqtt_exporter
 
 docker run -p 9992:9992 -e brokerAddress=localhost:1883 mosquitto_mqtt_exporter
@@ -57,7 +58,7 @@ $SYS/broker/heap/maximum|mosquitto_heap_maximum|The largest amount of heap memor
 
 ![grafana dashboard](grafana.png)
 
-[mosquitto documentation / ]( https://mosquitto.org/documentation/)
+[mosquitto documentation ]( https://mosquitto.org/documentation/)
 [mosquitto metrics man page ]( https://mosquitto.org/man/mosquitto-8.html)
 
 ## Metrics example
@@ -104,7 +105,7 @@ Build binaries for following platforms
 
 1. linux/386 
 2. linux/amd64
-3. linux/arm64" 
+3. linux/arm64
 4. linux/armv7
 5. linux/armv6
 6. linux/armv5
