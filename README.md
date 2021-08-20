@@ -61,34 +61,34 @@ $SYS/broker/heap/maximum|mosquitto_heap_maximum|The largest amount of heap memor
 ```
 # HELP mosquitto_mqtt_mosquitto_bytes_received The total number of bytes received since the broker started.
 # TYPE mosquitto_mqtt_mosquitto_bytes_received gauge
-mosquitto_mqtt_mosquitto_bytes_received 0
+mosquitto_mqtt_mosquitto_bytes_received 1159
 # HELP mosquitto_mqtt_mosquitto_bytes_sent The total number of bytes sent since the broker started.
 # TYPE mosquitto_mqtt_mosquitto_bytes_sent gauge
-mosquitto_mqtt_mosquitto_bytes_sent 0
+mosquitto_mqtt_mosquitto_bytes_sent 184258
 # HELP mosquitto_mqtt_mosquitto_clients_active The number of currently connected clients.
 # TYPE mosquitto_mqtt_mosquitto_clients_active gauge
-mosquitto_mqtt_mosquitto_clients_active 0
+mosquitto_mqtt_mosquitto_clients_active 1
 # HELP mosquitto_mqtt_mosquitto_clients_maximum The maximum number of clients that have been connected to the broker at the same time.
 # TYPE mosquitto_mqtt_mosquitto_clients_maximum gauge
 mosquitto_mqtt_mosquitto_clients_maximum 0
 # HELP mosquitto_mqtt_mosquitto_clients_total The total number of active and inactive clients currently connected and registered on the broker.
 # TYPE mosquitto_mqtt_mosquitto_clients_total gauge
-mosquitto_mqtt_mosquitto_clients_total 0
+mosquitto_mqtt_mosquitto_clients_total 1
 # HELP mosquitto_mqtt_mosquitto_heap_current The current size of the heap memory in use by mosquitto. Note that this topic may be unavailable depending on compile time options.
 # TYPE mosquitto_mqtt_mosquitto_heap_current gauge
-mosquitto_mqtt_mosquitto_heap_current 0
+mosquitto_mqtt_mosquitto_heap_current 49752
 # HELP mosquitto_mqtt_mosquitto_heap_maximum The largest amount of heap memory used by mosquitto. Note that this topic may be unavailable depending on compile time options.
 # TYPE mosquitto_mqtt_mosquitto_heap_maximum gauge
 mosquitto_mqtt_mosquitto_heap_maximum 0
 # HELP mosquitto_mqtt_mosquitto_messages_received mosquitto broker messages received
 # TYPE mosquitto_mqtt_mosquitto_messages_received gauge
-mosquitto_mqtt_mosquitto_messages_received 0
+mosquitto_mqtt_mosquitto_messages_received 96
 # HELP mosquitto_mqtt_mosquitto_messages_sent mosquitto broker messages sent
 # TYPE mosquitto_mqtt_mosquitto_messages_sent gauge
-mosquitto_mqtt_mosquitto_messages_sent 0
+mosquitto_mqtt_mosquitto_messages_sent 4582
 # HELP mosquitto_mqtt_mosquitto_uptime mosquitto broker uptime
 # TYPE mosquitto_mqtt_mosquitto_uptime gauge
-mosquitto_mqtt_mosquitto_uptime 5973
+mosquitto_mqtt_mosquitto_uptime 32802
 ```
 
 ## Build exporter 
@@ -108,4 +108,42 @@ build for following platforms
 
 <!-- zap logging
 channals for mqtt
+
+
+
+
+name: Publish-GHRC
+
+on:
+  push:
+    branches: [master]
+  # workflow_run:
+  #   workflows: ["Go-Build"]
+  #   # branches: [dev]
+  #   types:
+  #     - completed
+      # - requested
+
+jobs:
+  Publish:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Build docker container
+        run: docker build . -t ghcr.io/$(echo $GITHUB_ACTOR | tr '[:upper:]' '[:lower:]')/mosquitto_mqtt_exporter:latest -t ghcr.io/$(echo $GITHUB_ACTOR | tr '[:upper:]' '[:lower:]')/mosquitto_mqtt_exporter:$(echo $GITHUB_SHA | head -c7)
+
+      - name: Login to docker
+        run: echo  ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{github.actor}} --password-stdin
+
+      - name: Push
+        run: docker push ghcr.io/$(echo $GITHUB_ACTOR | tr '[:upper:]' '[:lower:]')/mosquitto_mqtt_exporter:latest
+# docker build . -t ghcr.io/aa/mosquitto_mqtt_exporter:latest -t ghcr.io/aa/mosquitto_mqtt_exporter:${echo $GITHUB_SHA | head -c7}
+
+
+
  -->
