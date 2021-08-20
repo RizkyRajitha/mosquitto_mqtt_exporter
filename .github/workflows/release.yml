@@ -29,10 +29,10 @@ jobs:
         with:
           ref: ${{ steps.latestrelease.outputs.releasetag }}
 
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
+      # - name: Checkout
+      #   uses: actions/checkout@v2
+      #   with:
+      #     fetch-depth: 0
 
       - name: Set up Go
         uses: actions/setup-go@v2

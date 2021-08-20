@@ -100,7 +100,7 @@ mosquitto_mqtt_mosquitto_uptime 32802
 ```bash
 ./build.sh
 ```
-build for following platforms
+Build binaries for following platforms
 
 1. linux/386 
 2. linux/amd64
@@ -111,8 +111,4 @@ build for following platforms
 
 
 <!-- zap logging
-channals for mqtt
-
-
-
  -->
