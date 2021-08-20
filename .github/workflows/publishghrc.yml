@@ -5,7 +5,6 @@ on:
     workflows: ["Go-Build"]
     types:
       - completed
-      - requested
 
 jobs:
   Publish:
