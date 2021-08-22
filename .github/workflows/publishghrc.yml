@@ -30,7 +30,7 @@ jobs:
           ref: ${{ steps.latestrelease.outputs.releasetag }}
 
       - name: Build docker container
-        run: docker build . -t ghcr.io/$(echo $GITHUB_ACTOR | tr '[:upper:]' '[:lower:]')/mosquitto_mqtt_exporter:latest -t ghcr.io/$(echo $GITHUB_ACTOR | tr '[:upper:]' '[:lower:]')/mosquitto_mqtt_exporter:${{ steps.latestrelease.outputs.releasetag }} -t ghcr.io/$(echo $GITHUB_ACTOR | tr '[:upper:]' '[:lower:]')/mosquitto_mqtt_exporter:$(echo $GITHUB_SHA | head -c7)
+        run: docker build . -t ghcr.io/$(echo $GITHUB_ACTOR | tr '[:upper:]' '[:lower:]')/mosquitto_mqtt_exporter:${{ steps.latestrelease.outputs.releasetag }} -t ghcr.io/$(echo $GITHUB_ACTOR | tr '[:upper:]' '[:lower:]')/mosquitto_mqtt_exporter:latest  -t ghcr.io/$(echo $GITHUB_ACTOR | tr '[:upper:]' '[:lower:]')/mosquitto_mqtt_exporter:$(echo $GITHUB_SHA | head -c7)
 
       - name: Login to docker
         run: echo  ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{github.actor}} --password-stdin

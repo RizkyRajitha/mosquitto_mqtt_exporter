@@ -60,6 +60,7 @@ $SYS/broker/heap/maximum|mosquitto_heap_maximum|The largest amount of heap memor
 ![grafana dashboard](grafana.png)
 
 [mosquitto documentation ]( https://mosquitto.org/documentation/)
+
 [mosquitto metrics man page ]( https://mosquitto.org/man/mosquitto-8.html)
 
 ## Metrics example
