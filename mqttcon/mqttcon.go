@@ -65,6 +65,16 @@ var messageHandler mqtt.MessageHandler = func(client mqtt.Client, message mqtt.M
 		collector.UptimeGauge(data)
 	}
 
+	//version
+	// The version of the broker. Static.
+
+	// if topic == "$SYS/broker/version" {
+	// 	uptime := (strings.Split(msg, " "))[0]
+	// 	data, _ := strconv.ParseFloat(uptime, 64)
+	// 	// log.Println(data)
+	// 	collector.UptimeGauge(data)
+	// }
+	
 	//messages
 
 	if topic == "$SYS/broker/messages/received" {
@@ -76,6 +86,12 @@ var messageHandler mqtt.MessageHandler = func(client mqtt.Client, message mqtt.M
 		data, _ := strconv.ParseFloat(msg, 64)
 		// log.Println(data)
 		collector.MessagesSentGauge(data)
+	}
+
+	if topic == "$SYS/broker/messages/inflight" {
+		data, _ := strconv.ParseFloat(msg, 64)
+		// log.Println(data)
+		collector.MessagesInflightGauge(data)
 	}
 
 	// clients
@@ -96,6 +112,18 @@ var messageHandler mqtt.MessageHandler = func(client mqtt.Client, message mqtt.M
 		data, _ := strconv.ParseFloat(msg, 64)
 		// log.Println(data)
 		collector.ClientsConnectedGauge(data)
+	}
+
+	if topic == "$SYS/broker/clients/disconnected" {
+		data, _ := strconv.ParseFloat(msg, 64)
+		// log.Println(data)
+		collector.ClientsDisconnectedGauge(data)
+	}
+
+	if topic == "$SYS/broker/clients/expired" {
+		data, _ := strconv.ParseFloat(msg, 64)
+		// log.Println(data)
+		collector.ClientsExpiredGauge(data)
 	}
 
 	//bytes
