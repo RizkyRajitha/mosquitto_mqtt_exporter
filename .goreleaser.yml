@@ -2,10 +2,6 @@ builds:
   - 
     binary: mosquitto_mqtt_exporter
 
-    # flags:
-    #   - -tags=dev
-    #   - -v
-
     ldflags:
       - -s -w -X main.version={{.Version}}
 

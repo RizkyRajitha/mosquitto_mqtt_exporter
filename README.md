@@ -3,6 +3,8 @@
 [![Publish-GHRC](https://github.com/RizkyRajitha/mosquitto_mqtt_exporter/actions/workflows/publishghrc.yml/badge.svg)](https://github.com/RizkyRajitha/mosquitto_mqtt_exporter/actions/workflows/publishghrc.yml)
 [![Go-Build](https://github.com/RizkyRajitha/mosquitto_mqtt_exporter/actions/workflows/build.yml/badge.svg)](https://github.com/RizkyRajitha/mosquitto_mqtt_exporter/actions/workflows/build.yml)
 [![Release](https://github.com/RizkyRajitha/mosquitto_mqtt_exporter/actions/workflows/release.yml/badge.svg)](https://github.com/RizkyRajitha/mosquitto_mqtt_exporter/actions/workflows/release.yml)
+![GitHub all releases](https://img.shields.io/github/downloads/rizkyrajitha/mosquitto_mqtt_exporter/total)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/rizkyrajitha/mosquitto_mqtt_exporter)
 
 <!-- A Mosquitto Mqtt Broker metric exporter for Prometheus  -->
 

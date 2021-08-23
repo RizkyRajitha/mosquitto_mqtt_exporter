@@ -25,4 +25,4 @@ COPY --from=builder /app/mosquitto_mqtt_exporter ./
 
 EXPOSE ${listenPort}
 
-CMD [ "/bin/sh" , "-c" , "./mosquitto_mqtt_exporter -brokerAddress=${brokerAddress} -listenPort=${listenPort} -username=${username} -password=${password}} " ]
+CMD [ "/bin/sh" , "-c" , "./mosquitto_mqtt_exporter -brokerAddress=${brokerAddress} -listenPort=${listenPort} -username=${username} -password=${password}}" ]
